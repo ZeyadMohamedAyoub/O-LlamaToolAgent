@@ -84,3 +84,10 @@ LLMs are powerful, but they sometimes make things up. This project shows how I b
 4. Make sure you have Python 3.8+ and requests installed: `pip install requests`
 5. Run the agent script: `python local_llama_infer.py`
 ---
+
+## Useful Resources
+
+- [Hugging Face Agents Course: Dummy Agent Library](https://huggingface.co/learn/agents-course/unit1/dummy-agent-library)  
+  A beginner-friendly, hands-on guide to building your own AI agents and understanding the basics of tool use with language models.
+
+--- 
