@@ -1,55 +1,8 @@
 import requests
 
-prompt = "The capital of Egypt is"
+# prompt = "The capital of Egypt is"
 
 OLLAMA_BASE_URL = "http://localhost:11434"
-
-def generate_response(prompt):
-    url = f"{OLLAMA_BASE_URL}/api/generate"
-    data = {
-        "model": "llama3.2:1b",
-        "prompt": prompt,
-        "stream": False,
-        "options": {
-            "num_predict": 100,
-        }
-    }
-    response = requests.post(url, json=data)
-    res = response.json()
-    if "response" not in res:
-        print("Un expected response from ollama API", res)
-        raise KeyError("'response' key not found in Ollama API response")
-    return res["response"]
-
-
-print(generate_response(prompt))
-
-# https://arc.net/l/quote/djjvbzfo
-def chat_with_model(prompt):
-    url = f"{OLLAMA_BASE_URL}/api/chat"
-    data = {
-        "model" : "llama3.2:1b",
-        "messages" : [
-            {
-                "role": "user",
-                "content": prompt,
-            },
-        ],
-        "stream" : False,
-        "options" : {
-            "num_predict": 100,
-        }
-    }
-
-    response = requests.post(url, json=data)
-    res = response.json()
-    if "message" not in res or "content" not in res["message"]:
-        print("Un expected response from ollama API", res)
-        raise KeyError("'response' key not found in Ollama API response")
-    return res["message"]["content"]
-
-print(chat_with_model("The Capital of Egypt is"))
-
 
 SYSTEM_PROMPT = """Answer the following questions as best you can. You have access to the following tools:
 
@@ -188,7 +141,7 @@ def get_weather(location):
     return f"the weather in {location} is sunny with a temperature of 37°C. \n"
 prompt_2 = "What is the weather like in Cairo?"
 #HOLA PIPELINE:
-new_prompt = prompt_2 + "\n" + chat_with_agent_after_adding_stop("What is the weather like in Cairo?") + "\nObservation: " + get_weather('Cairo')
+new_prompt = prompt_2 + "\n" + chat_with_agent_after_adding_stop("What is the weather like in Cairo?") + "\nObservation: " + get_weather('Cairo') + "\n" + "just respond with Final Answer?"
 
 # do the final call
 def chat_with_agent_no_stop(prompt_2):
@@ -196,10 +149,6 @@ def chat_with_agent_no_stop(prompt_2):
     data = {
         "model" : "llama3.2",
         "messages" : [
-            {
-                "role": "system",
-                "content": SYSTEM_PROMPT,
-            },
             {
                 "role": "user",
                 "content": prompt_2,
