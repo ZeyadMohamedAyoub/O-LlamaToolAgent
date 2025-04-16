@@ -89,5 +89,5 @@ LLMs are powerful, but they sometimes make things up. This project shows how I b
 
 - [Hugging Face Agents Course: Dummy Agent Library](https://huggingface.co/learn/agents-course/unit1/dummy-agent-library)  
   A beginner-friendly, hands-on guide to building your own AI agents and understanding the basics of tool use with language models.
-
+- [Ollama English Documentation](https://ollama.readthedocs.io/en/api/)
 --- 
